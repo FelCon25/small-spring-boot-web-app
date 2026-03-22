@@ -8,6 +8,10 @@ import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service responsible for handling authentication and user registration logic.
+ * This class coordinates validation, entity mapping, and repository interactions.
+ */
 @Service
 public class AuthService {
 
@@ -19,8 +23,17 @@ public class AuthService {
         this.userMapper = userMapper;
     }
 
+    /**
+     * Registers a new user in the system.
+     * Validates that the requested username and email are not already taken
+     * before delegating to the repository for persistence.
+     *
+     * @param request the registration details provided by the client
+     * @return a mapped response containing the newly created user's non-sensitive details
+     * @throws ResourceAlreadyExistsException if the username or email is already registered
+     */
     public RegisterResponse register(RegisterRequest request) {
-        //check if user exists
+        // check if user exists
         if (userRepository.existsByUsername(request.username())) {
             throw new ResourceAlreadyExistsException("User", "username", request.username());
         }

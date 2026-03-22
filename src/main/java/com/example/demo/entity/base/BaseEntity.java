@@ -5,7 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -18,19 +18,19 @@ public abstract class BaseEntity {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createTime;
+    private Instant createTime;
 
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime updateTime;
+    private Instant updateTime;
 
     public UUID getId() {
         return id;
     }
-    public LocalDateTime getCreateTime() {
+    public Instant getCreateTime() {
         return createTime;
     }
-    public LocalDateTime getUpdateTime() {
+    public Instant getUpdateTime() {
         return updateTime;
     }
 }

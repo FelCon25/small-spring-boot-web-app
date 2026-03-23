@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.request.RegisterRequest;
-import com.example.demo.dto.response.RegisterResponse;
+import com.example.demo.dto.response.AuthResponse;
 import com.example.demo.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +14,8 @@ public class UserMapper {
         return user;
     }
 
-    public RegisterResponse toResponse(User user) {
-        return new RegisterResponse(
+    public AuthResponse toResponse(User user) {
+        return new AuthResponse(
             user.getId(),
             user.getUsername(),
             user.getEmail(),
